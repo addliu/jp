@@ -1,0 +1,14 @@
+package db;
+
+public class DBUtil {
+	
+	private static final String URL="";
+	
+	
+	
+	public static void main(String[] args) throws ClassNotFoundException {
+		// import driver
+		Class.forName("com.mysql.jdbc.Driver");
+		// 
+	}
+}

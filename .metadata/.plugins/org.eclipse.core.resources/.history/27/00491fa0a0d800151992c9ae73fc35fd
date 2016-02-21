@@ -1,0 +1,15 @@
+package modle;
+
+public class Godness_DAO {
+	public void add(){
+		
+	}
+	
+	public void delete(){
+		
+	}
+	
+	public void update(){
+		
+	}
+}

@@ -1,0 +1,7 @@
+package action;
+
+public class testAction {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,27 @@
+package modle;
+
+import java.util.List;
+
+import db.DBUtil;
+
+public class Godness_DAO {
+	public void add(){
+		DBUtil.getConnection();
+	}
+	
+	public void delete(){
+		
+	}
+	
+	public void update(){
+		
+	}
+	
+	public List<Godness> query(){
+		return null;
+	}
+	
+	public Godness query(String[] argvs){
+		return null;
+	}
+}

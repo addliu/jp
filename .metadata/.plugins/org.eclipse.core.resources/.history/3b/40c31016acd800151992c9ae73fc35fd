@@ -1,0 +1,68 @@
+package modle;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import db.DBUtil;
+
+public class Godness_DAO {
+	
+	public void add(Godness g) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		String sql = "" + 
+				"insert into goddess_demo" +
+				"(user_name, sex, age, birthday, email, mobile,"
+				+ "create_user, create_date, update_user, update_date, isdel)"
+				+ "values(?,?,?,?,?,?,?,current_date(),?,current_date(),?)";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setString(1, g.getUser_name());
+		ptmt.setInt(2, g.getSex());
+		ptmt.setInt(3, g.getAge());
+		ptmt.setDate(4, new Date(g.getBirthday().getTime()));
+		ptmt.setString(5, g.getEmail());
+		ptmt.setString(6, g.getMoblie());
+		ptmt.setString(7, g.getCreate_user());
+		ptmt.setString(8, g.getUpdate_user());
+		ptmt.setInt(9, g.getIsdel());
+		ptmt.execute();
+	}
+	
+	public void delete(int id) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		String sql = "delete from goddess_demo where id=?";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		
+		
+	}
+	
+	public void update(Godness g) throws SQLException{
+		Connection conn = DBUtil.getConnection();
+		String sql = "" + 
+				" update goddess_demo " +
+				" set user_name=?, sex=?, age=?, birthday=?, email=?, mobile=?, " + 
+				" update_user=?, update_date=current_date(), isdel=? " + 
+				" where id=?";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setString(1, g.getUser_name());
+		ptmt.setInt(2, g.getSex());
+		ptmt.setInt(3, g.getAge());
+		ptmt.setDate(4, new Date(g.getBirthday().getTime()));
+		ptmt.setString(5, g.getEmail());
+		ptmt.setString(6, g.getMoblie());
+		ptmt.setString(7, g.getUpdate_user());
+		ptmt.setInt(8, g.getIsdel());
+		ptmt.setInt(9, g.getId());
+		ptmt.execute();
+	}
+	
+	public List<Godness> query(){
+		return null;
+	}
+	
+	public Godness query(String[] argvs){
+		return null;
+	}
+}

@@ -1,0 +1,6 @@
+package modle;
+
+public class Godness {
+	private Integer id;
+	private String user_name;
+}

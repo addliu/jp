@@ -1,0 +1,45 @@
+package modle;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import db.DBUtil;
+
+public class Godness_DAO {
+	private Connection conn = DBUtil.getConnection();
+	
+	public void add(Godness g) throws SQLException{
+		String sql = "" + 
+				"insert into goddess_demo" +
+				"(user_name, sex, age, birthday, email, mobile,"
+				+ "create_user, create_date, update_user, update_date, isdel)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setString(1, g.getUser_name());
+		ptmt.setInt(2, g.getSex());
+		ptmt.setInt(3, g.getAge());
+		ptmt.setDate(4, new Date(g.getBirthday().getTime()));
+		ptmt.setString(5, g.getEmail());
+		ptmt.setString(6, g.getMoblie());
+		ptmt.setString(7, g.getCreate_user());
+	}
+	
+	public void delete(){
+		
+	}
+	
+	public void update(){
+		
+	}
+	
+	public List<Godness> query(){
+		return null;
+	}
+	
+	public Godness query(String[] argvs){
+		return null;
+	}
+}

@@ -1,0 +1,40 @@
+package modle;
+
+import java.sql.Connection;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+import com.mysql.jdbc.PreparedStatement;
+
+import db.DBUtil;
+
+public class Godness_DAO {
+	private Connection conn = DBUtil.getConnection();
+	
+	@SuppressWarnings("deprecation")
+	public void add(Godness g){
+		String sql = "" + 
+				"insert into goddess_demo" +
+				"(user_name, sex, age, birthday, email, mobile,"
+				+ "create_user, create_date, update_user, update_date, isdel)"
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+	}
+	
+	public void delete(){
+		
+	}
+	
+	public void update(){
+		
+	}
+	
+	public List<Godness> query(){
+		return null;
+	}
+	
+	public Godness query(String[] argvs){
+		return null;
+	}
+}
