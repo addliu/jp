@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete 3 elements from project &apos;jdbc_demo&apos;&#x0A;- Original project: &apos;jdbc_demo&apos;&#x0A;- Original elements:&#x0A;     com&#x0A;     META-INF&#x0A;     org" description="Delete elements" element1="lib/META-INF" element2="lib/com" element3="lib/org" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1456058766251" subPackages="false" version="1.0"/>
-</session>

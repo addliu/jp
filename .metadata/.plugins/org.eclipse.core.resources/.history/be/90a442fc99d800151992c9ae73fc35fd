@@ -1,8 +1,0 @@
-package db;
-
-public class DBUtil {
-	public static void main(String[] args) {
-		// import driver
-		Class.forName('com.mysql.jdbc.Driver');
-	}
-}

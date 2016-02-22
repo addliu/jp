@@ -1,9 +1,0 @@
-package action;
-
-import modle.Godness;
-
-public class testAction {
-	public static void main(String[] args) {
-		Godness g1 = new Godness();
-	}
-}
