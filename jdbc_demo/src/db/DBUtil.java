@@ -2,9 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DBUtil {
 
@@ -23,17 +21,6 @@ public class DBUtil {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) throws Exception {
-
-		// control database
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select user_name, age from goddess_demo");
-
-		while (rs.next()) {
-			System.out.println(rs.getString("user_name") + ", " + rs.getInt("age"));
 		}
 	}
 

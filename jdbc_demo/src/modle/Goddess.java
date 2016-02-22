@@ -2,7 +2,7 @@ package modle;
 
 import java.util.Date;
 
-public class Godness {
+public class Goddess {
 	private Integer id;
 	private String user_name;
 	// 0 as male, 1 as female
@@ -10,7 +10,7 @@ public class Godness {
 	private Integer age;
 	private Date birthday;
 	private String email;
-	private String moblie;
+	private String mobile;
 	private String create_user;
 	private String update_user;
 	private Date create_date;
@@ -18,6 +18,15 @@ public class Godness {
 	// 0 as false, 1 as true
 	private Integer isdel;
 
+	public Goddess() {
+		this.sex = 1;
+		this.create_user = "ADMIN";
+		this.update_date = new Date();
+		this.update_user = "ADMIN";
+		this.create_date = new Date();
+		this.isdel = 0;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -66,12 +75,12 @@ public class Godness {
 		this.email = email;
 	}
 
-	public String getMoblie() {
-		return moblie;
+	public String getmobile() {
+		return mobile;
 	}
 
-	public void setMoblie(String moblie) {
-		this.moblie = moblie;
+	public void setmobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public String getCreate_user() {
@@ -117,7 +126,7 @@ public class Godness {
 	@Override
 	public String toString() {
 		return "Godness [id=" + id + ", user_name=" + user_name + ", sex=" + sex + ", age=" + age + ", birthday="
-				+ birthday + ", email=" + email + ", moblie=" + moblie + ", create_user=" + create_user
+				+ birthday + ", email=" + email + ", mobile=" + mobile + ", create_user=" + create_user
 				+ ", update_user=" + update_user + ", create_date=" + create_date + ", update_date=" + update_date
 				+ ", isdel=" + isdel + "]";
 	}
