@@ -1,0 +1,26 @@
+package action;
+
+import modle.Goddess;
+
+public class GoddessControler {
+	public void add(){
+		
+	}
+	
+	public void delete(){
+		
+	}
+	
+	public void update() {
+		
+	}
+	
+	public Goddess query(){
+		
+		return null;
+	}
+	
+	public List<Goddess> query() {
+		
+	}
+}

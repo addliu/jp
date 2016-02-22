@@ -1,0 +1,7 @@
+package action;
+
+public class GoddessControler {
+	public void add(){
+		
+	}
+}
