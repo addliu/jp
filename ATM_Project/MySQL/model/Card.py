@@ -19,11 +19,12 @@ class Card:
     UPDATE = "UPDATE Card SET owner=%s, personID=%s, phoneNum=%s, password=%s, deposit=%s " \
              "WHERE id=%s"
     QUERY_ALL = "SELECT * FROM Card"
-    QUERY = "SELECT * FROM Card WHERE id=%s"
+    QUERY = "SELECT * FROM Card WHERE id = %s"
+    KIND = "Card"
 
     def __init__(self):
         #  ID
-        self.id = 0
+        self._id = 0
         # Card number
         self._cardNum = ''
         # User name
@@ -45,18 +46,10 @@ class Card:
         return (self.get_cardNum(), self.get_owner(), self.get_personID(),
                 self.get_phoneNumber(), self.get_password(), self.get_deposit())
 
-    # Get delete params
-    def get_d_p(self):
-        return self.get_cardNum()
-
     # Get update params
     def get_u_p(self):
         return (self.get_owner(), self.get_personID(), self.get_phoneNumber(),
-                self.get_password(), self.get_deposit(), self.get_cardNum())
-
-    # Get query params
-    def get_q_p(self):
-        return self.get_cardNum()
+                self.get_password(), self.get_deposit(), self.get_id())
 
     # Set a random card number
     def _genarate_card_number(self):
@@ -86,6 +79,9 @@ class Card:
     def get_cardNum(self):
         return self._cardNum
 
+    def set_cardNum(self, cardNum):
+        self._cardNum = cardNum
+
     def set_owner(self, owner):
         self._owner = owner
 
@@ -109,3 +105,11 @@ class Card:
 
     def set_password(self, password):
         self._password = password
+
+    # Get id
+    def get_id(self):
+        return self._id
+
+    # Set id
+    def set_id(self, ID):
+        self._id = ID

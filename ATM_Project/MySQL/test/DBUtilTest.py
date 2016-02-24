@@ -5,10 +5,10 @@ if __name__ != '__main__':
     sys.exit()
 
 cnx = get_connection()
-query = "select * from Card"
+query = "SELECT * FROM Card"
 cursor = cnx.cursor()
 cursor.execute(query)
-for (cn, ow, pi, pn, pw, dp) in cursor:
-    print(cn, ow, pi, pn, pw, str(dp))
+for c in cursor:
+    print(c)
 cursor.close()
 cnx.close()
