@@ -1,3 +1,4 @@
+# /usr/bin/python
 import random
 
 # Card number length

@@ -1,3 +1,4 @@
+# /usr/bin/python
 #  coding: utf-8
 from ATM_Project.MySQL.db.DBUtil import get_connection
 from ATM_Project.MySQL.model.Card import Card

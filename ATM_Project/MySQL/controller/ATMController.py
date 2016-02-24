@@ -1,3 +1,4 @@
+# /usr/bin/python
 from ATM_Project.MySQL.model.CardDAO import *
 
 
