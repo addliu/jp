@@ -14,11 +14,11 @@ def main():
     print("Please choose a function")
 
 
-# insert a message
-def insert():
+# create a new account
+def create_account():
     """
     NoneType -> NoneType
-    This function insert a new message to database
+    This function create a new  account
     """
     print("Please choose one kind of card\n"
           "[1]: Card\n"
@@ -44,13 +44,13 @@ def insert():
     add_card(card)
 
 
-# Delete a message
-def delete():
+# Reset password
+def reset_password():
     """
     NoneType -> NoneType
-    This function remove a record from database
+    This function Reset password
     """
-    print("Choose one kind of card to delete:\n"
+    print("Choose Your card :\n"
           "[1]: Card\n"
           "[2]: CreditCard\n")
     kind = int(input())
@@ -62,45 +62,20 @@ def delete():
         print("Input error!!!")
         time.sleep(1)
         return
-    print("Please enter the card's id which you want to delete")
-    delete_card(card, int(input()))
-
-
-# Update a message
-def update():
-    """
-    NoneType -> NoneType
-    This function modifier a record
-    """
-    card = get()
-    print("Please enter id:")
+    print("Please enter the  your card's id:")
     card = query_card(card, int(input()))
-    print("Please enter your name:(not change using null)\n")
-    name = str(input())
-    if name != 'null':
-        card.set_owner(str(input()))
-    print("Please enter your person ID:\n")
-    name = str(input())
-    if name != 'null':
-        card.set_personID(str(input()))
-    print("Please enter your phone number:\n")
-    name = str(input())
-    if name != 'null':
-        card.set_phoneNumber(str(input()))
-    print("Please set your password:\n")
-    name = str(input())
-    if name != 'null':
-        card.set_password(str(input()))
+    print("Please enter your new password:")
+    card.set_password(str(input()))
     update_card(card)
 
 
-# get a message for detail
-def get():
+# get account balance
+def get_balance():
     """
-    NoneType -> Card(CreditCard)
-    This function get a Card or CreditCard object
+    NoneType -> double
+    This function get account balance
     """
-    print("Choose one kind of card to delete:\n"
+    print("Choose Your card :\n"
           "[1]: Card\n"
           "[2]: CreditCard\n")
     kind = int(input())
@@ -113,30 +88,118 @@ def get():
         time.sleep(1)
         return
     print("Please enter id:")
-    return query_card(card, int(input()))
+    card = query_card(card, int(input()))
+    balance = card.get_deposit()
+    if 1 == kind:
+        pass
+    elif 2 == kind:
+        balance += card.get_creditLimit()
+    return balance
 
 
-# Get all card message
-def query():
+# withdraw money
+def withdraw():
     """
-    NoneType -> list()
-    In list, it's a (list of) Card or CreditCard object(s)
-    This function get a list of Card or CreditCard objects
+    NoneType -> NoneType
+    This function withdraw money
+    """
+    print("Choose one kind of card:\n"
+          "[1]: Card\n"
+          "[2]: CreditCard\n")
+    kind = int(input())
+    if 1 == kind:
+        card = Card()
+    elif 2 == kind:
+        card = CreditCard()
+    else:
+        print("Input error!!!")
+        time.sleep(1)
+        return
+    print("Please enter id:")
+    card = query_card(card, int(input()))
+    if 1 == kind:
+        balance = card.get_deposit()
+    elif 2 == kind:
+        balance = card.get_deposit() + card.get_creditLimit()
+    print("Please enter how much money you want to withdraw:")
+    money = int(input())
+    if money > balance:
+        print("You don't have enough money!")
+    elif money > card.get_deposit():
+        card.set_deposit(0.0)
+        card.set_creditLimit(balance - money)
+    elif money <= card.get_deposit():
+        card.set_deposit(balance - money)
+    update_card(card)
+
+
+# Deposit money
+def deposit():
+    """
+    NoneType -> NoneType
+    This function deposit you money
     """
     print("Choose one kind of card to query:\n"
           "[1]: Card\n"
           "[2]: CreditCard\n")
     kind = int(input())
     if 1 == kind:
-        c_list = query_all_card(Card())
+        card = Card()
     elif 2 == kind:
-        c_list = query_all_card(CreditCard())
+        card = CreditCard()
     else:
         print("Input error!!!")
         time.sleep(1)
         return
-    return c_list
+    print("Please enter card id:")
+    card = query_card(card, int(input()))
+    print("Please enter how much money you'd like to deposit:")
+    money = int(input())
+    card.set_deposit(card.get_deposit() + money)
+    update_card(card)
 
+
+# Transfer money
+def transfer():
+    """
+    NoneType -> NoneType
+    This function finish transfer money
+    """
+    print("Choose one kind of card:\n"
+          "[1]: Card\n"
+          "[2]: CreditCard\n")
+    kind = int(input())
+    if 1 == kind:
+        card = Card()
+        card2 = Card()
+    elif 2 == kind:
+        card = CreditCard()
+        card2 = CreditCard()
+    else:
+        print("Input error!!!")
+        time.sleep(1)
+        return
+    print("Please enter your card's id:")
+    card = query_card(card, int(input()))
+    print("Please enter other's card's id:")
+    card2 = query_card(card2, int(input()))
+    print("Please enter how much money you want to transfer:")
+    money = int(input())
+    if 1 == kind:
+        balance = card.get_deposit()
+    elif 2 == kind:
+        balance = card.get_deposit() + card.get_creditLimit()
+    if money > balance:
+        print("You don't have enough money!")
+    elif money > card.get_deposit():
+        card.set_deposit(0.0)
+        card.set_creditLimit(balance - money)
+        card2.set_deposit(card2.get_deposit() + money)
+    elif money <= card.get_deposit():
+        card.set_deposit(balance - money)
+        card2.set_deposit(card2.get_deposit() + money)
+    update_card(card)
+    update_card(card2)
 
 if __name__ != '__main__':
     sys.exit()
@@ -144,19 +207,21 @@ if __name__ != '__main__':
 CONTEXT = "Welcome for using this system\n" \
           "There is main menu:\n" \
           "[MAIN/M]: Show main menu\n" \
-          "[INSERT/I]: Add a message\n" \
-          "[DELETE/D]: Delete a message\n" \
-          "[UPDATE/U]: Update a message\n" \
-          "[GET/G]: Query a message\n" \
-          "[QUERY/Q]: Query all messages\n" \
+          "[CREATE/C]: Create a account\n" \
+          "[PASSWORD/P]: Change your password\n" \
+          "[BALANCE/B]: Check balance\n" \
+          "[WITHDRAW/W]: WITHDRAW money\n" \
+          "[DEPOSIT/D]: Deposit money\n" \
+          "[TRANSFER/T]: Transfer monet\n" \
           "[EXIT/E]: Quit system\n"
 
 OPERATOR_MAIN = "MAIN"
-OPERATOR_INSERT = "INSERT"
-OPERATOR_DELETE = "DELETE"
-OPERATOR_UPDATE = "UPDATE"
-OPERATOR_GET = "GET"
-OPERATOR_QUERY = "QUERY"
+OPERATOR_CREATE = "CREATE"
+OPERATOR_PASSWORD = "PASSWORD"
+OPERATOR_BALANCE = "BALANCE"
+OPERATOR_WITHDRAW = "WITHDRAW"
+OPERATOR_DEPOSIT = "DEPOSIT"
+OPERATOR_TRANSFER = "TRANSFER"
 OPERATOR_EXIT = "EXIT"
 
 main()
@@ -165,34 +230,38 @@ while True:
     if std_in.upper() == OPERATOR_MAIN \
             or std_in.upper() == OPERATOR_MAIN[0]:
         main()
-    elif std_in.upper() == OPERATOR_INSERT\
-            or std_in.upper() == OPERATOR_INSERT[0]:
-        insert()
-        print("Add card success!\n")
+    elif std_in.upper() == OPERATOR_CREATE\
+            or std_in.upper() == OPERATOR_CREATE[0]:
+        create_account()
+        print("Create account success!\n")
         time.sleep(1)
         main()
-    elif std_in.upper() == OPERATOR_DELETE[0] \
-            or std_in.upper() == OPERATOR_INSERT:
-        delete()
-        print("That card have been remove successful!")
+    elif std_in.upper() == OPERATOR_PASSWORD[0] \
+            or std_in.upper() == OPERATOR_PASSWORD:
+        reset_password()
+        print("Reset password successful!")
         time.sleep(1)
         main()
-    elif std_in.upper() == OPERATOR_UPDATE[0] \
-            or std_in.upper() == OPERATOR_UPDATE:
-        update()
-    elif std_in.upper() == OPERATOR_GET[0] \
-            or std_in.upper() == OPERATOR_GET:
-        c = get()
-        c.to_string()
-        time.sleep(3)
+    elif std_in.upper() == OPERATOR_BALANCE[0] \
+            or std_in.upper() == OPERATOR_BALANCE:
+        print("Your balance is:", str(get_balance()))
+        time.sleep(1)
         main()
-    elif std_in.upper() == OPERATOR_QUERY[0] \
-            or std_in.upper() == OPERATOR_QUERY:
-        cl = query()
-        for c in cl:
-            print("kind:{}\tid:{}\towner:{}".format(c.KIND, c.get_id(),
-                                                    c.get_owner()))
-        time.sleep(3)
+    elif std_in.upper() == OPERATOR_WITHDRAW[0] \
+            or std_in.upper() == OPERATOR_WITHDRAW:
+        withdraw()
+        print("Withdraw success!")
+        time.sleep(1)
+        main()
+    elif std_in.upper() == OPERATOR_DEPOSIT[0] \
+            or std_in.upper() == OPERATOR_DEPOSIT:
+        deposit()
+        print("Deposit money finish!")
+        time.sleep(1)
+        main()
+    elif std_in.upper() == OPERATOR_TRANSFER[0] \
+            or std_in.upper() == OPERATOR_TRANSFER:
+        transfer()
         main()
     elif std_in.upper() == OPERATOR_EXIT[0] \
             or std_in.upper() == OPERATOR_EXIT:
