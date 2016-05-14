@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="TestTwo:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/TestTwo_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="TestTwo/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="TestTwo" />
+          <element id="library" level="project" name="apache-tomcat-9.0.0" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-5.1.39-bin" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
